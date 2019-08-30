@@ -1,10 +1,10 @@
 package sync
 
 import (
-	"github.com/micro/go-micro/data/store"
-	"github.com/micro/go-micro/sync/leader"
-	"github.com/micro/go-micro/sync/lock"
-	"github.com/micro/go-micro/sync/time"
+	"github.com/brudi/go-micro/data/store"
+	"github.com/brudi/go-micro/sync/leader"
+	"github.com/brudi/go-micro/sync/lock"
+	"github.com/brudi/go-micro/sync/time"
 )
 
 // WithLeader sets the leader election implementation opton

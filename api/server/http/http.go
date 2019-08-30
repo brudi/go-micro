@@ -9,8 +9,8 @@ import (
 	"sync"
 
 	"github.com/gorilla/handlers"
-	"github.com/micro/go-micro/api/server"
-	"github.com/micro/go-micro/util/log"
+	"github.com/brudi/go-micro/api/server"
+	"github.com/brudi/go-micro/util/log"
 	"golang.org/x/crypto/acme/autocert"
 )
 

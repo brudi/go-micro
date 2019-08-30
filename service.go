@@ -6,11 +6,11 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/config/cmd"
-	"github.com/micro/go-micro/debug/handler"
-	"github.com/micro/go-micro/metadata"
-	"github.com/micro/go-micro/server"
+	"github.com/brudi/go-micro/client"
+	"github.com/brudi/go-micro/config/cmd"
+	"github.com/brudi/go-micro/debug/handler"
+	"github.com/brudi/go-micro/metadata"
+	"github.com/brudi/go-micro/server"
 )
 
 type service struct {

@@ -6,10 +6,10 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/registry/memory"
-	hello "github.com/micro/go-micro/service/grpc/proto"
-	mls "github.com/micro/go-micro/util/tls"
+	"github.com/brudi/go-micro"
+	"github.com/brudi/go-micro/registry/memory"
+	hello "github.com/brudi/go-micro/service/grpc/proto"
+	mls "github.com/brudi/go-micro/util/tls"
 )
 
 type testHandler struct{}

@@ -2,7 +2,7 @@ package tunnel
 
 import (
 	"github.com/google/uuid"
-	"github.com/micro/go-micro/transport"
+	"github.com/brudi/go-micro/transport"
 )
 
 func newLink(s transport.Socket) *link {

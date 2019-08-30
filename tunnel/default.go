@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/micro/go-micro/transport"
-	"github.com/micro/go-micro/util/log"
+	"github.com/brudi/go-micro/transport"
+	"github.com/brudi/go-micro/util/log"
 )
 
 var (

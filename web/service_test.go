@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/registry/memory"
+	"github.com/brudi/go-micro/registry"
+	"github.com/brudi/go-micro/registry/memory"
 )
 
 func TestService(t *testing.T) {

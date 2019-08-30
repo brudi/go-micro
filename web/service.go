@@ -15,13 +15,13 @@ import (
 	"time"
 
 	"github.com/micro/cli"
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/registry"
-	maddr "github.com/micro/go-micro/util/addr"
-	mhttp "github.com/micro/go-micro/util/http"
-	"github.com/micro/go-micro/util/log"
-	mnet "github.com/micro/go-micro/util/net"
-	mls "github.com/micro/go-micro/util/tls"
+	"github.com/brudi/go-micro"
+	"github.com/brudi/go-micro/registry"
+	maddr "github.com/brudi/go-micro/util/addr"
+	mhttp "github.com/brudi/go-micro/util/http"
+	"github.com/brudi/go-micro/util/log"
+	mnet "github.com/brudi/go-micro/util/net"
+	mls "github.com/brudi/go-micro/util/tls"
 )
 
 type service struct {

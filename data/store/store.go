@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/micro/go-micro/config/options"
+	"github.com/brudi/go-micro/config/options"
 )
 
 var (

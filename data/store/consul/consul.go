@@ -6,8 +6,8 @@ import (
 	"net"
 
 	"github.com/hashicorp/consul/api"
-	"github.com/micro/go-micro/config/options"
-	"github.com/micro/go-micro/data/store"
+	"github.com/brudi/go-micro/config/options"
+	"github.com/brudi/go-micro/data/store"
 )
 
 type ckv struct {

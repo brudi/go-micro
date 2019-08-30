@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/hashicorp/hcl"
-	"github.com/micro/go-micro/config/encoder"
+	"github.com/brudi/go-micro/config/encoder"
 )
 
 type hclEncoder struct{}

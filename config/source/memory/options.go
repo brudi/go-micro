@@ -3,7 +3,7 @@ package memory
 import (
 	"context"
 
-	"github.com/micro/go-micro/config/source"
+	"github.com/brudi/go-micro/config/source"
 )
 
 type changeSetKey struct{}

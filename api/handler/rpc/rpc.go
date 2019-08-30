@@ -10,17 +10,17 @@ import (
 	"strings"
 
 	"github.com/joncalhoun/qson"
-	"github.com/micro/go-micro/api"
-	"github.com/micro/go-micro/api/handler"
-	proto "github.com/micro/go-micro/api/internal/proto"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/client/selector"
-	"github.com/micro/go-micro/codec"
-	"github.com/micro/go-micro/codec/jsonrpc"
-	"github.com/micro/go-micro/codec/protorpc"
-	"github.com/micro/go-micro/errors"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/util/ctx"
+	"github.com/brudi/go-micro/api"
+	"github.com/brudi/go-micro/api/handler"
+	proto "github.com/brudi/go-micro/api/internal/proto"
+	"github.com/brudi/go-micro/client"
+	"github.com/brudi/go-micro/client/selector"
+	"github.com/brudi/go-micro/codec"
+	"github.com/brudi/go-micro/codec/jsonrpc"
+	"github.com/brudi/go-micro/codec/protorpc"
+	"github.com/brudi/go-micro/errors"
+	"github.com/brudi/go-micro/registry"
+	"github.com/brudi/go-micro/util/ctx"
 )
 
 const (

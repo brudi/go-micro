@@ -2,8 +2,8 @@
 package service
 
 import (
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/server"
+	"github.com/brudi/go-micro/client"
+	"github.com/brudi/go-micro/server"
 )
 
 type Service interface {

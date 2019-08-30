@@ -3,7 +3,7 @@ package tunnel
 import (
 	"io"
 
-	"github.com/micro/go-micro/util/log"
+	"github.com/brudi/go-micro/util/log"
 )
 
 type tunListener struct {

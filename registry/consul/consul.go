@@ -12,8 +12,8 @@ import (
 	"time"
 
 	consul "github.com/hashicorp/consul/api"
-	"github.com/micro/go-micro/registry"
-	mnet "github.com/micro/go-micro/util/net"
+	"github.com/brudi/go-micro/registry"
+	mnet "github.com/brudi/go-micro/util/net"
 	hash "github.com/mitchellh/hashstructure"
 )
 

@@ -2,8 +2,8 @@
 package registry
 
 import (
-	"github.com/micro/go-micro/network/resolver"
-	"github.com/micro/go-micro/registry"
+	"github.com/brudi/go-micro/network/resolver"
+	"github.com/brudi/go-micro/registry"
 )
 
 // Resolver is a registry network resolver

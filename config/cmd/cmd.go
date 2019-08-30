@@ -10,39 +10,39 @@ import (
 	"time"
 
 	"github.com/micro/cli"
-	"github.com/micro/go-micro/client"
-	cgrpc "github.com/micro/go-micro/client/grpc"
-	cmucp "github.com/micro/go-micro/client/mucp"
-	"github.com/micro/go-micro/server"
-	sgrpc "github.com/micro/go-micro/server/grpc"
-	smucp "github.com/micro/go-micro/server/mucp"
-	"github.com/micro/go-micro/util/log"
+	"github.com/brudi/go-micro/client"
+	cgrpc "github.com/brudi/go-micro/client/grpc"
+	cmucp "github.com/brudi/go-micro/client/mucp"
+	"github.com/brudi/go-micro/server"
+	sgrpc "github.com/brudi/go-micro/server/grpc"
+	smucp "github.com/brudi/go-micro/server/mucp"
+	"github.com/brudi/go-micro/util/log"
 
 	// brokers
-	"github.com/micro/go-micro/broker"
-	"github.com/micro/go-micro/broker/http"
-	"github.com/micro/go-micro/broker/memory"
-	"github.com/micro/go-micro/broker/nats"
+	"github.com/brudi/go-micro/broker"
+	"github.com/brudi/go-micro/broker/http"
+	"github.com/brudi/go-micro/broker/memory"
+	"github.com/brudi/go-micro/broker/nats"
 
 	// registries
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/registry/consul"
-	"github.com/micro/go-micro/registry/gossip"
-	"github.com/micro/go-micro/registry/mdns"
-	rmem "github.com/micro/go-micro/registry/memory"
+	"github.com/brudi/go-micro/registry"
+	"github.com/brudi/go-micro/registry/consul"
+	"github.com/brudi/go-micro/registry/gossip"
+	"github.com/brudi/go-micro/registry/mdns"
+	rmem "github.com/brudi/go-micro/registry/memory"
 
 	// selectors
-	"github.com/micro/go-micro/client/selector"
-	"github.com/micro/go-micro/client/selector/dns"
-	"github.com/micro/go-micro/client/selector/router"
-	"github.com/micro/go-micro/client/selector/static"
+	"github.com/brudi/go-micro/client/selector"
+	"github.com/brudi/go-micro/client/selector/dns"
+	"github.com/brudi/go-micro/client/selector/router"
+	"github.com/brudi/go-micro/client/selector/static"
 
 	// transports
-	"github.com/micro/go-micro/transport"
-	tgrpc "github.com/micro/go-micro/transport/grpc"
-	thttp "github.com/micro/go-micro/transport/http"
-	tmem "github.com/micro/go-micro/transport/memory"
-	"github.com/micro/go-micro/transport/quic"
+	"github.com/brudi/go-micro/transport"
+	tgrpc "github.com/brudi/go-micro/transport/grpc"
+	thttp "github.com/brudi/go-micro/transport/http"
+	tmem "github.com/brudi/go-micro/transport/memory"
+	"github.com/brudi/go-micro/transport/quic"
 )
 
 type Cmd interface {

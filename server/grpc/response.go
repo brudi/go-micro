@@ -1,7 +1,7 @@
 package grpc
 
 import (
-	"github.com/micro/go-micro/codec"
+	"github.com/brudi/go-micro/codec"
 )
 
 type rpcResponse struct {

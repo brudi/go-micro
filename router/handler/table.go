@@ -3,9 +3,9 @@ package handler
 import (
 	"context"
 
-	"github.com/micro/go-micro/errors"
-	"github.com/micro/go-micro/router"
-	pb "github.com/micro/go-micro/router/proto"
+	"github.com/brudi/go-micro/errors"
+	"github.com/brudi/go-micro/router"
+	pb "github.com/brudi/go-micro/router/proto"
 )
 
 type Table struct {

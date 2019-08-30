@@ -9,7 +9,7 @@ import (
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/micro/cli"
-	"github.com/micro/go-micro/agent/input"
+	"github.com/brudi/go-micro/agent/input"
 )
 
 func init() {

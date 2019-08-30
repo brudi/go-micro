@@ -5,9 +5,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/micro/go-micro/debug/handler"
-	"github.com/micro/go-micro/proxy"
-	"github.com/micro/go-micro/server"
+	"github.com/brudi/go-micro/debug/handler"
+	"github.com/brudi/go-micro/proxy"
+	"github.com/brudi/go-micro/server"
 )
 
 // Server is a proxy muxer that incudes the use of the DefaultHandler

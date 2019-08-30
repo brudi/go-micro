@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/micro/go-micro/registry"
+	"github.com/brudi/go-micro/registry"
 )
 
 const (

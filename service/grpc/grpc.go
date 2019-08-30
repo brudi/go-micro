@@ -3,10 +3,10 @@ package grpc
 import (
 	"time"
 
-	"github.com/micro/go-micro"
-	broker "github.com/micro/go-micro/broker"
-	client "github.com/micro/go-micro/client/grpc"
-	server "github.com/micro/go-micro/server/grpc"
+	"github.com/brudi/go-micro"
+	broker "github.com/brudi/go-micro/broker"
+	client "github.com/brudi/go-micro/client/grpc"
+	server "github.com/brudi/go-micro/server/grpc"
 )
 
 // NewService returns a grpc service compatible with go-micro.Service
