@@ -29,9 +29,7 @@ func (r *rpcStream) Request() Request {
 }
 
 func (r *rpcStream) Send(msg interface{}) error {
-	r.Lock()
-	defer r.Unlock()
-
+	r.RLock()
 	resp := codec.Message{
 		Target:   r.request.Service(),
 		Method:   r.request.Method(),
@@ -39,25 +37,23 @@ func (r *rpcStream) Send(msg interface{}) error {
 		Id:       r.id,
 		Type:     codec.Response,
 	}
+	r.RUnlock()
 
 	if err := r.codec.Write(&resp, msg); err != nil {
-		r.err = err
+		r.setError(err)
 	}
 
 	return nil
 }
 
 func (r *rpcStream) Recv(msg interface{}) error {
-	r.Lock()
-	defer r.Unlock()
-
 	req := new(codec.Message)
 	req.Type = codec.Request
 
 	if err := r.codec.ReadHeader(req, req.Type); err != nil {
 		// discard body
-		r.codec.ReadBody(nil)
-		r.err = err
+		_ = r.codec.ReadBody(nil)
+		r.setError(err)
 		return err
 	}
 
@@ -67,7 +63,7 @@ func (r *rpcStream) Recv(msg interface{}) error {
 		switch req.Error {
 		case lastStreamResponseError.Error():
 			// discard body
-			r.codec.ReadBody(nil)
+			_ = r.codec.ReadBody(nil)
 			r.err = io.EOF
 			return io.EOF
 		default:
@@ -76,9 +72,11 @@ func (r *rpcStream) Recv(msg interface{}) error {
 	}
 
 	// we need to stay up to date with sequence numbers
+	r.Lock()
 	r.id = req.Id
+	r.Unlock()
 	if err := r.codec.ReadBody(msg); err != nil {
-		r.err = err
+		r.setError(err)
 		return err
 	}
 
@@ -89,6 +87,12 @@ func (r *rpcStream) Error() error {
 	r.RLock()
 	defer r.RUnlock()
 	return r.err
+}
+
+func (r *rpcStream) setError(err error) {
+	r.Lock()
+	defer r.Unlock()
+	r.err = err
 }
 
 func (r *rpcStream) Close() error {

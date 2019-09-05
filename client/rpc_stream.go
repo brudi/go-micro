@@ -27,6 +27,9 @@ type rpcStream struct {
 }
 
 func (r *rpcStream) isClosed() bool {
+	r.RLock()
+	defer r.RUnlock()
+
 	select {
 	case <-r.closed:
 		return true
@@ -48,14 +51,12 @@ func (r *rpcStream) Response() Response {
 }
 
 func (r *rpcStream) Send(msg interface{}) error {
-	r.Lock()
-	defer r.Unlock()
-
 	if r.isClosed() {
-		r.err = errShutdown
+		r.setError(errShutdown)
 		return errShutdown
 	}
 
+	r.RLock()
 	req := codec.Message{
 		Id:       r.id,
 		Target:   r.request.Service(),
@@ -63,9 +64,10 @@ func (r *rpcStream) Send(msg interface{}) error {
 		Endpoint: r.request.Endpoint(),
 		Type:     codec.Request,
 	}
+	r.RUnlock()
 
 	if err := r.codec.Write(&req, msg); err != nil {
-		r.err = err
+		r.setError(err)
 		return err
 	}
 
@@ -73,11 +75,8 @@ func (r *rpcStream) Send(msg interface{}) error {
 }
 
 func (r *rpcStream) Recv(msg interface{}) error {
-	r.Lock()
-	defer r.Unlock()
-
 	if r.isClosed() {
-		r.err = errShutdown
+		r.setError(errShutdown)
 		return errShutdown
 	}
 
@@ -85,12 +84,14 @@ func (r *rpcStream) Recv(msg interface{}) error {
 
 	if err := r.codec.ReadHeader(&resp, codec.Response); err != nil {
 		if err == io.EOF && !r.isClosed() {
-			r.err = io.ErrUnexpectedEOF
+			r.setError(io.ErrUnexpectedEOF)
 			return io.ErrUnexpectedEOF
 		}
-		r.err = err
+		r.setError(err)
 		return err
 	}
+
+	var err error // Maybe err := r.Error()
 
 	switch {
 	case len(resp.Error) > 0:
@@ -98,20 +99,25 @@ func (r *rpcStream) Recv(msg interface{}) error {
 		// any subsequent requests will get the ReadResponseBody
 		// error if there is one.
 		if resp.Error != lastStreamResponseError {
-			r.err = serverError(resp.Error)
+			err = serverError(resp.Error)
 		} else {
-			r.err = io.EOF
+			err = io.EOF
 		}
-		if err := r.codec.ReadBody(nil); err != nil {
-			r.err = err
+		if cerr := r.codec.ReadBody(nil); cerr != nil {
+			err = cerr
 		}
 	default:
-		if err := r.codec.ReadBody(msg); err != nil {
-			r.err = err
+		if cerr := r.codec.ReadBody(msg); cerr != nil {
+			err = cerr
 		}
 	}
 
-	return r.err
+	if err != nil {
+		r.setError(err)
+		return err
+	}
+
+	return nil
 }
 
 func (r *rpcStream) Error() error {
@@ -120,7 +126,15 @@ func (r *rpcStream) Error() error {
 	return r.err
 }
 
+func (r *rpcStream) setError(err error) {
+	r.Lock()
+	defer r.Unlock()
+	r.err = err
+}
+
 func (r *rpcStream) Close() error {
+	r.Lock()
+	defer r.Unlock()
 	select {
 	case <-r.closed:
 		return nil
@@ -130,7 +144,7 @@ func (r *rpcStream) Close() error {
 		// send the end of stream message
 		if r.sendEOS {
 			// no need to check for error
-			r.codec.Write(&codec.Message{
+			_ = r.codec.Write(&codec.Message{
 				Id:       r.id,
 				Target:   r.request.Service(),
 				Method:   r.request.Method(),
